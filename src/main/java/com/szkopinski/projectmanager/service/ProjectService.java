@@ -15,7 +15,7 @@ public class ProjectService {
   private ProjectRepository repository;
 
   @Autowired
-  public ProjectService(ProjectRepository repository) {
+  public ProjectService(@NonNull ProjectRepository repository) {
     this.repository = repository;
   }
 
@@ -24,12 +24,10 @@ public class ProjectService {
   }
 
   @Transactional
-  public boolean deleteProject(int id) {
+  public void deleteProject(int id) {
     if (findProjectById(id).isPresent()) {
       repository.deleteById(id);
-      return true;
     }
-    return false;
   }
 
   @Transactional
@@ -40,5 +38,20 @@ public class ProjectService {
   public Iterable<Project> findAllProjects() {
     Sort sortByTitle = new Sort(Sort.Direction.ASC, "title");
     return repository.findAll(sortByTitle);
+  }
+
+  @Transactional
+  public Project updateProject(int id, @NonNull Project updatedProject) {
+    return repository.findById(id)
+        .map(projectData -> {
+          projectData.setClient(updatedProject.getClient());
+          projectData.setTitle(updatedProject.getTitle());
+          projectData.setDescription(updatedProject.getDescription());
+          projectData.setCostEstimates(updatedProject.getCostEstimates());
+          projectData.setStatus(updatedProject.getStatus());
+          projectData.setStartDate(updatedProject.getStartDate());
+          projectData.setEndDate(updatedProject.getEndDate());
+          return repository.save(projectData);
+        }).orElse(null);
   }
 }
