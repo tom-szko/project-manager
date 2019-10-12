@@ -3,6 +3,7 @@ package com.szkopinski.projectmanager.controller;
 import com.szkopinski.projectmanager.model.Project;
 import com.szkopinski.projectmanager.service.ProjectService;
 import java.util.Optional;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/projects/")
 public class ProjectController {
 
   private ProjectService projectService;
@@ -27,13 +28,12 @@ public class ProjectController {
     this.projectService = projectService;
   }
 
-  @GetMapping("projects")
+  @GetMapping
   public ResponseEntity<Iterable<Project>> getAllProjects() {
-    Sort ascendingOrder = new Sort(Sort.Direction.ASC);
     return ResponseEntity.ok(projectService.findAllProjects());
   }
 
-  @GetMapping("projects/{id}")
+  @GetMapping("{id}")
   public ResponseEntity getProjectById(@PathVariable("id") int id) {
     Optional<Project> project = projectService.findProjectById(id);
     if (project.isPresent()) {
@@ -42,7 +42,7 @@ public class ProjectController {
     return ResponseEntity.notFound().build();
   }
 
-  @PostMapping("projects")
+  @PostMapping
   public ResponseEntity addProject(@RequestBody Project project) {
     try {
       return ResponseEntity.status(HttpStatus.CREATED).body(projectService.addProject(project));
@@ -51,7 +51,7 @@ public class ProjectController {
     }
   }
 
-  @DeleteMapping("projects/{id}")
+  @DeleteMapping("{id}")
   public ResponseEntity deleteProject(@PathVariable("id") int id) {
     try {
       projectService.deleteProject(id);
@@ -61,7 +61,7 @@ public class ProjectController {
     }
   }
 
-  @PutMapping("projects/{id}")
+  @PutMapping("{id}")
   public ResponseEntity updateProject(@PathVariable("id") int id, @RequestBody Project project) {
     try {
       Project updatedProject = projectService.updateProject(id, project);

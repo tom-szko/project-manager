@@ -19,25 +19,23 @@ public class ProjectService {
     this.repository = repository;
   }
 
+  public Iterable<Project> findAllProjects() {
+    Sort sortById = new Sort(Sort.Direction.ASC, "id");
+    return repository.findAll();
+  }
+
   public Optional<Project> findProjectById(int id) {
     return repository.findById(id);
   }
 
   @Transactional
   public void deleteProject(int id) {
-    if (findProjectById(id).isPresent()) {
       repository.deleteById(id);
-    }
   }
 
   @Transactional
   public Project addProject(@NonNull Project project) {
     return repository.save(project);
-  }
-
-  public Iterable<Project> findAllProjects() {
-    Sort sortByTitle = new Sort(Sort.Direction.ASC, "title");
-    return repository.findAll(sortByTitle);
   }
 
   @Transactional
