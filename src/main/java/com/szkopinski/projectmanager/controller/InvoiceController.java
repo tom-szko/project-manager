@@ -1,11 +1,10 @@
 package com.szkopinski.projectmanager.controller;
 
-import com.szkopinski.projectmanager.model.Project;
-import com.szkopinski.projectmanager.service.ProjectService;
+import com.szkopinski.projectmanager.model.Invoice;
+import com.szkopinski.projectmanager.service.InvoiceService;
 import java.util.Optional;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,57 +17,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/projects/")
-public class ProjectController {
+@RequestMapping("api/invoices/")
+public class InvoiceController {
 
-  private ProjectService projectService;
+  private InvoiceService invoiceService;
 
   @Autowired
-  public ProjectController(ProjectService projectService) {
-    this.projectService = projectService;
+  public InvoiceController(InvoiceService invoiceService) {
+    this.invoiceService = invoiceService;
   }
 
   @GetMapping
-  public ResponseEntity<Iterable<Project>> getAllProjects() {
-    return ResponseEntity.ok(projectService.findAllProjects());
+  public ResponseEntity<Iterable<Invoice>> findAllInvoices() {
+    return ResponseEntity.ok(invoiceService.findAllInvoices());
   }
 
   @GetMapping("{id}")
-  public ResponseEntity getProjectById(@PathVariable("id") int id) {
-    Optional<Project> project = projectService.findProjectById(id);
-    if (project.isPresent()) {
-      return ResponseEntity.ok(project);
+  public ResponseEntity findInvoiceById(int id) {
+    Optional<Invoice> invoice = invoiceService.findInvoiceById(id);
+    if (invoice.isPresent()) {
+      return ResponseEntity.ok(invoice);
     }
     return ResponseEntity.notFound().build();
   }
 
   @PostMapping
-  public ResponseEntity addProject(@NonNull @RequestBody Project project) {
+  public ResponseEntity addInvoice(@NonNull @RequestBody Invoice invoice) {
     try {
-      return ResponseEntity.status(HttpStatus.CREATED).body(projectService.addProject(project));
+      return ResponseEntity.status(HttpStatus.CREATED).body(invoiceService.addInvoice(invoice));
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity deleteProject(@PathVariable("id") int id) {
+  public ResponseEntity deleteInvoice(@PathVariable("id") int id) {
     try {
-      projectService.deleteProject(id);
-      return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    invoiceService.deleteInvoice(id);
+    return ResponseEntity.noContent().build();
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
   }
 
   @PutMapping("{id}")
-  public ResponseEntity updateProject(@PathVariable("id") int id, @NonNull @RequestBody Project project) {
+  public ResponseEntity updateInvoice(@PathVariable("id") int id, @NonNull @RequestBody Invoice invoice) {
     try {
-      Project updatedProject = projectService.updateProject(id, project);
-      if (updatedProject == null) {
+      Invoice updatedInvoice = invoiceService.updateInvoice(id, invoice);
+      if (updatedInvoice == null) {
         return ResponseEntity.notFound().build();
       }
-      return ResponseEntity.ok(updatedProject);
+      return ResponseEntity.ok(invoice);
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
