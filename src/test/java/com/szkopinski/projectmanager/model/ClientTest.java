@@ -2,6 +2,7 @@ package com.szkopinski.projectmanager.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Set;
 import org.assertj.core.util.Sets;
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +18,10 @@ class ClientTest {
     String telephone = "123456789";
     String email = "sample@sample.com";
     String taxId = "123163123";
+    Set<Project> projects = Sets.newHashSet();
 
     //when
-    Client client = new Client(id, name, address, accountNumber, telephone, email, taxId, Sets.newHashSet());
+    Client client = new Client(id, name, address, accountNumber, telephone, email, taxId, projects);
 
     //then
     assertEquals(id, client.getId());
@@ -29,5 +31,6 @@ class ClientTest {
     assertEquals(telephone, client.getTelephone());
     assertEquals(email, client.getEmail());
     assertEquals(taxId, client.getTaxId());
+    assertEquals(projects, client.getProjects());
   }
 }
