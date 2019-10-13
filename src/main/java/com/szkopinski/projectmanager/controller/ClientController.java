@@ -2,7 +2,6 @@ package com.szkopinski.projectmanager.controller;
 
 import com.szkopinski.projectmanager.model.Client;
 import com.szkopinski.projectmanager.service.ClientService;
-import java.net.URI;
 import java.util.Optional;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class ClientController {
 
   @GetMapping
   public ResponseEntity<Iterable<Client>> getAllClients() {
-    return ResponseEntity.ok(clientService.findAllProjects());
+    return ResponseEntity.ok(clientService.findAllClients());
   }
 
   @GetMapping("{id}")

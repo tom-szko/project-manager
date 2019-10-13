@@ -18,7 +18,7 @@ public class ClientService {
     this.clientRepository = clientRepository;
   }
 
-  public Iterable<Client> findAllProjects() {
+  public Iterable<Client> findAllClients() {
     Sort sortById = new Sort(Sort.Direction.ASC, "id");
     return clientRepository.findAll();
   }

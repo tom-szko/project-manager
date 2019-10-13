@@ -37,12 +37,13 @@ public class Client {
   @OneToMany(mappedBy = "client")
   private Set<Project> projects;
 
-  public Client(String name, String address, String accountNumber, String telephone, String email, String taxId) {
+  public Client(String name, String address, String accountNumber, String telephone, String email, String taxId, Set<Project> projects) {
     this.name = name;
     this.address = address;
     this.accountNumber = accountNumber;
     this.telephone = telephone;
     this.email = email;
     this.taxId = taxId;
+    this.projects = projects;
   }
 }
