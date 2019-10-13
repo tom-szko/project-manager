@@ -33,7 +33,7 @@ public class ClientController {
     return ResponseEntity.ok(clientService.findAllProjects());
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("{id}")
   public ResponseEntity getClientById(@PathVariable("id") int id) {
     Optional<Client> client = clientService.findClientById(id);
     if (client.isPresent()) {
@@ -42,7 +42,7 @@ public class ClientController {
     return ResponseEntity.notFound().build();
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("{id}")
   public ResponseEntity deleteClient(@PathVariable("id") int id) {
     try {
       clientService.deleteClient(id);
@@ -53,7 +53,7 @@ public class ClientController {
   }
 
   @PostMapping
-  public ResponseEntity addClient(@NonNull Client client) {
+  public ResponseEntity addClient(@NonNull @RequestBody Client client) {
     try {
       return ResponseEntity.status(HttpStatus.CREATED).body(clientService.addClient(client));
     } catch (Exception e) {
@@ -61,8 +61,8 @@ public class ClientController {
     }
   }
 
-  @PutMapping("/{id}")
-  public ResponseEntity updateClient(int id, @NonNull @RequestBody Client client) {
+  @PutMapping("{id}")
+  public ResponseEntity updateClient(@PathVariable("id") int id, @NonNull @RequestBody Client client) {
     try {
       Client updatedClient = clientService.updateClient(id, client);
       if (updatedClient == null) {
