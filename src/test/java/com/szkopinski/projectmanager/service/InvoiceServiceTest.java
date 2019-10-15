@@ -47,7 +47,7 @@ class InvoiceServiceTest {
     Mockito.when(invoiceRepository.findAll()).thenReturn(expectedInvoices);
 
     // when
-    Iterable<Invoice> actualInvoices = invoiceRepository.findAll();
+    Iterable<Invoice> actualInvoices = invoiceService.findAllInvoices();
 
     // then
     Mockito.verify(invoiceRepository, Mockito.times(1)).findAll();

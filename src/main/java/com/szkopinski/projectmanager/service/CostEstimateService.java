@@ -5,7 +5,6 @@ import com.szkopinski.projectmanager.repository.CostEstimateRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +18,7 @@ public class CostEstimateService {
   }
 
   public Iterable<CostEstimate> findAllCostEstimates() {
-    Sort sortById = new Sort(Sort.Direction.ASC, "id");
-    return costEstimateRepository.findAll(sortById);
+    return costEstimateRepository.findAll();
   }
 
   public Optional<CostEstimate> findCostEstimateById(int id) {

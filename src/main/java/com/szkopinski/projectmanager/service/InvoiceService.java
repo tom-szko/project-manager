@@ -5,7 +5,6 @@ import com.szkopinski.projectmanager.repository.InvoiceRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +18,6 @@ public class InvoiceService {
   }
 
   public Iterable<Invoice> findAllInvoices() {
-    Sort sortById = new Sort(Sort.Direction.ASC, "id");
     return invoiceRepository.findAll();
   }
 
