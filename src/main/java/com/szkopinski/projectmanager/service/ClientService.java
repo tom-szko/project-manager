@@ -5,7 +5,6 @@ import com.szkopinski.projectmanager.repository.ClientRepository;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +18,6 @@ public class ClientService {
   }
 
   public Iterable<Client> findAllClients() {
-    Sort sortById = new Sort(Sort.Direction.ASC, "id");
     return clientRepository.findAll();
   }
 

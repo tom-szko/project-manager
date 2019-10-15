@@ -6,7 +6,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,12 +14,11 @@ public class ProjectService {
   private ProjectRepository repository;
 
   @Autowired
-  public ProjectService(@NonNull ProjectRepository repository) {
+  public ProjectService(ProjectRepository repository) {
     this.repository = repository;
   }
 
   public Iterable<Project> findAllProjects() {
-    Sort sortById = new Sort(Sort.Direction.ASC, "id");
     return repository.findAll();
   }
 
@@ -30,7 +28,7 @@ public class ProjectService {
 
   @Transactional
   public void deleteProject(int id) {
-      repository.deleteById(id);
+    repository.deleteById(id);
   }
 
   @Transactional
