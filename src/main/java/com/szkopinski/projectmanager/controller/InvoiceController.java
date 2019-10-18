@@ -33,7 +33,7 @@ public class InvoiceController {
   }
 
   @GetMapping("{id}")
-  public ResponseEntity findInvoiceById(int id) {
+  public ResponseEntity findInvoiceById(@PathVariable int id) {
     Optional<Invoice> invoice = invoiceService.findInvoiceById(id);
     if (invoice.isPresent()) {
       return ResponseEntity.ok(invoice);
