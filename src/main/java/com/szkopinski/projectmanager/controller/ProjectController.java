@@ -42,7 +42,7 @@ public class ProjectController {
   }
 
   @PostMapping
-  public ResponseEntity addProject(@NonNull @RequestBody Project project) {
+  public ResponseEntity addProject(@RequestBody Project project) {
     try {
       return ResponseEntity.status(HttpStatus.CREATED).body(projectService.addProject(project));
     } catch (Exception e) {
