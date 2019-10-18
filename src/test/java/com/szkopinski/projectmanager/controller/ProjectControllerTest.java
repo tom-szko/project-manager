@@ -34,10 +34,10 @@ class ProjectControllerTest {
   private static final MediaType CONTENT_TYPE_JSON = MediaType.APPLICATION_JSON_UTF8;
 
   @Autowired
-  MockMvc mockMvc;
+  private MockMvc mockMvc;
 
   @MockBean
-  ProjectService projectService;
+  private ProjectService projectService;
 
   @Test
   @DisplayName("Should return all projects")
