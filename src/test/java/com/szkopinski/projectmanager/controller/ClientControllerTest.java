@@ -116,8 +116,7 @@ class ClientControllerTest {
 
     // when
     mockMvc
-        .perform(delete(URL_TEMPLATE + clientId)
-            .accept(CONTENT_TYPE_JSON))
+        .perform(delete(URL_TEMPLATE + clientId))
         .andDo(print())
         // then
         .andExpect(status().isNoContent());

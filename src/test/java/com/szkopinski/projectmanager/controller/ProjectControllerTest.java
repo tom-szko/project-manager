@@ -124,8 +124,7 @@ class ProjectControllerTest {
 
     // when
     mockMvc
-        .perform(delete(URL_TEMPLATE + projectId)
-            .accept(CONTENT_TYPE_JSON))
+        .perform(delete(URL_TEMPLATE + projectId))
         .andDo(print())
         // then
         .andExpect(status().isNoContent());
