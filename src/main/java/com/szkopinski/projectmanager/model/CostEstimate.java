@@ -32,7 +32,8 @@ public class CostEstimate {
   @OneToMany(mappedBy = "costEstimate")
   private List<Item> itemList;
 
-  public CostEstimate(List<Item> itemList) {
+  public CostEstimate(Project project, List<Item> itemList) {
+    this.project = project;
     this.itemList = itemList;
   }
 }
