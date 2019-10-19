@@ -82,7 +82,7 @@ class CostEstimateControllerTest {
 
     // when
     mockMvc
-        .perform(post(URL_TEMPLATE)
+        .perform(get(URL_TEMPLATE + costEstimateId)
             .accept(CONTENT_TYPE_JSON))
         .andDo(print())
         // then

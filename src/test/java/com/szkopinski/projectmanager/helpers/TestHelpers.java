@@ -9,12 +9,12 @@ public class TestHelpers {
 
   private static final ObjectMapper mapper = getObjectMapper();
 
-  public static String convertToJson(Object object) throws JsonProcessingException {
-    return mapper.writeValueAsString(object);
+  public static <T> String convertToJson(T t) throws JsonProcessingException {
+    return mapper.writeValueAsString(t);
   }
 
-  public static String convertToJson(Iterable<Object> objects) throws JsonProcessingException {
-    return mapper.writeValueAsString(objects);
+  public static <T> String convertToJson(Iterable<T> t) throws JsonProcessingException {
+    return mapper.writeValueAsString(t);
   }
 
   private static ObjectMapper getObjectMapper() {
