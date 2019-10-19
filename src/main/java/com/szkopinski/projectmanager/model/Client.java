@@ -1,5 +1,6 @@
 package com.szkopinski.projectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
