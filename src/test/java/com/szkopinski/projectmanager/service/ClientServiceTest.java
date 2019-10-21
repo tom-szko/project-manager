@@ -32,9 +32,9 @@ class ClientServiceTest {
   @DisplayName("Should find all clients")
   void shouldFindAllClients() {
     // given
-    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423", Sets.newHashSet());
-    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423", Sets.newHashSet());
+    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
+    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423");
+    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423");
     List<Client> expectedClients = List.of(client1, client2, client3);
     Mockito.when(clientRepository.findAll()).thenReturn(expectedClients);
 
@@ -50,20 +50,17 @@ class ClientServiceTest {
   @DisplayName("Should find specified client")
   void shouldFindSingleClient() {
     // given
-    Client client1 = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543",
+    int clientId = 1;
+    Client client = new Client(clientId, "Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423",
         Sets.newHashSet());
-    Client client2 = new Client(2, "Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423", Sets.newHashSet());
-    Client client3 = new Client(3, "Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423",
-        Sets.newHashSet());
-    int clientId = 3;
-    Mockito.when(clientRepository.findById(clientId)).thenReturn(Optional.of(client3));
+    Mockito.when(clientRepository.findById(clientId)).thenReturn(Optional.of(client));
 
     // when
     Optional<Client> actualClient = clientService.findClientById(clientId);
 
     // then
     Mockito.verify(clientRepository, Mockito.times(1)).findById(clientId);
-    assertEquals(Optional.of(client3), actualClient);
+    assertEquals(Optional.of(client), actualClient);
   }
 
   @Test

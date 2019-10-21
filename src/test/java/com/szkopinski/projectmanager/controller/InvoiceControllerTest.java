@@ -47,7 +47,7 @@ class InvoiceControllerTest {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543",
         Sets.newHashSet());
-    Project project = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice1 = new Invoice(1, LocalDate.of(2019, 5, 20), client, project, "Sample description", new BigDecimal(1000));
     Invoice invoice2 = new Invoice(1, LocalDate.of(2019, 5, 20), client, project, "Sample description2", new BigDecimal(2000));
@@ -76,7 +76,7 @@ class InvoiceControllerTest {
     int invoiceId = 1;
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543",
         Sets.newHashSet());
-    Project project = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice = new Invoice(invoiceId, LocalDate.of(2019, 5, 20), client, project, "Sample description", new BigDecimal(1000));
     String invoiceAsJson = convertToJson(invoice);
@@ -101,7 +101,7 @@ class InvoiceControllerTest {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543",
         Sets.newHashSet());
-    Project project = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice = new Invoice(1, LocalDate.of(2019, 5, 20), client, project, "Sample description", new BigDecimal(1000));
     String invoiceAsJson = convertToJson(invoice);

@@ -44,9 +44,9 @@ class ClientControllerIT {
   @DisplayName("Should return all clients present in repository")
   void shouldReturnAllClients() throws Exception {
     // given
-    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423", Sets.newHashSet());
-    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423", Sets.newHashSet());
+    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
+    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423");
+    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423");
     clientService.addClient(client1);
     clientService.addClient(client2);
     clientService.addClient(client3);
@@ -86,9 +86,9 @@ class ClientControllerIT {
   void shouldReturnClient() throws Exception {
     // given
     int clientId = 2;
-    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423", Sets.newHashSet());
-    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423", Sets.newHashSet());
+    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
+    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423");
+    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423");
     clientService.addClient(client1);
     clientService.addClient(client2);
     clientService.addClient(client3);
@@ -109,7 +109,7 @@ class ClientControllerIT {
   @DisplayName("Should add client to repository")
   void shouldAddClient() throws Exception {
     // given
-    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
+    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
     String clientAsJson = convertToJson(client);
 
     // when
@@ -134,9 +134,9 @@ class ClientControllerIT {
   @DisplayName("Should delete client from repository")
   void shouldDeleteClient() throws Exception {
     // given
-    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423", Sets.newHashSet());
-    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423", Sets.newHashSet());
+    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
+    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423");
+    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423");
     clientService.addClient(client1);
     clientService.addClient(client2);
     clientService.addClient(client3);
@@ -156,9 +156,9 @@ class ClientControllerIT {
   @DisplayName("Should update client in repository")
   void shouldUpdateClient() throws Exception {
     // given
-    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423", Sets.newHashSet());
-    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423", Sets.newHashSet());
+    Client client1 = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
+    Client client2 = new Client("Beta", "Beta address", "908765432112345678901234", "19230192301", "beta@mail.com", "00432423");
+    Client client3 = new Client("Gamma", "Gamma address", "100765432112345678901234", "10030192301", "gamma@mail.com", "99432423");
     clientService.addClient(client1);
     clientService.addClient(client2);
     clientService.addClient(client3);

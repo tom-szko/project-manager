@@ -38,7 +38,7 @@ class InvoiceServiceTest {
   void shouldReturnAllInvoices() {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project = new Project(client, "Sample title", "Sample description", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title", "Sample description", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice1 = new Invoice(1, LocalDate.of(2019, 4, 22), client, project, "Sample description", new BigDecimal(300));
     Invoice invoice2 = new Invoice(2, LocalDate.of(2019, 4, 23), client, project, "Sample description2", new BigDecimal(500));
@@ -59,7 +59,7 @@ class InvoiceServiceTest {
   void shouldReturnSpecifiedInvoice() {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project = new Project(client, "Sample title", "Sample description", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title", "Sample description", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice = new Invoice(3, LocalDate.of(2019, 4, 23), client, project, "Sample description3", new BigDecimal(1000));
     int id = invoice.getId();
@@ -78,7 +78,7 @@ class InvoiceServiceTest {
   void shouldAddInvoice() {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project = new Project(client, "Sample title", "Sample description", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title", "Sample description", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice = new Invoice(1, LocalDate.of(2019, 4, 22), client, project, "Sample description", new BigDecimal(300));
     Mockito.when(invoiceRepository.save(invoice)).thenReturn(invoice);
@@ -111,7 +111,7 @@ class InvoiceServiceTest {
     // given
     int invoiceId = 2;
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project = new Project(client, "Sample title", "Sample description", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title", "Sample description", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     Invoice invoice = new Invoice(invoiceId, LocalDate.of(2019, 4, 23), client, project, "Sample description", new BigDecimal(500));
     Invoice updatedInvoice = new Invoice(invoiceId, LocalDate.of(2019, 4, 25), client, project, "Updated description", new BigDecimal(700));

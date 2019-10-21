@@ -100,7 +100,7 @@ class CostEstimateControllerTest {
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
     Project project = new Project(1, client, "Sample title", "Sample description", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
-    CostEstimate costEstimate = new CostEstimate(project, Lists.emptyList());
+    CostEstimate costEstimate = new CostEstimate(project);
     String costEstimateAsJson = convertToJson(costEstimate);
     Mockito.when(costEstimateService.addCostEstimate(costEstimate)).thenReturn(costEstimate);
 

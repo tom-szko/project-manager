@@ -45,7 +45,7 @@ public class ClientService {
           clientData.setTelephone(updatedClient.getTelephone());
           clientData.setEmail(updatedClient.getEmail());
           clientData.setTaxId(updatedClient.getTaxId());
-          clientData.setProjects(updatedClient.getProjects());
+//          clientData.setProjects(updatedClient.getProjects());
           return clientRepository.save(clientData);
         }).orElse(null);
   }

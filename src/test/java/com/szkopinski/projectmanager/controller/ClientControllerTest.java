@@ -89,8 +89,7 @@ class ClientControllerTest {
   @DisplayName("Should add specified client")
   void shouldAddClient() throws Exception {
     // given
-    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543",
-        Sets.newHashSet());
+    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
     String clientAsJson = convertToJson(client);
     Mockito.when(clientService.addClient(client)).thenReturn(client);
 

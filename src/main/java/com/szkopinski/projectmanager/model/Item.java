@@ -1,5 +1,6 @@
 package com.szkopinski.projectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -36,16 +37,18 @@ public class Item {
 
   private BigDecimal tax;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "cost_estimate_id")
+  @JsonBackReference
   private CostEstimate costEstimate;
 
-  public Item(String name, int quantity, String unitType, BigDecimal unitPrice, BigDecimal discount, BigDecimal tax) {
+  public Item(String name, int quantity, String unitType, BigDecimal unitPrice, BigDecimal discount, BigDecimal tax, CostEstimate costEstimate) {
     this.name = name;
     this.quantity = quantity;
     this.unitType = unitType;
     this.unitPrice = unitPrice;
     this.discount = discount;
     this.tax = tax;
+    this.costEstimate = costEstimate;
   }
 }

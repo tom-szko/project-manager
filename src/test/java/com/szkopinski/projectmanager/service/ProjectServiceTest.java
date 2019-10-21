@@ -38,11 +38,11 @@ class ProjectServiceTest {
   void shouldReturnAllProjects() {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project1 = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project1 = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
-    Project project2 = new Project(client, "Sample title2", "Sample description2", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project2 = new Project(client, "Sample title2", "Sample description2", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
-    Project project3 = new Project(client, "Sample title3", "Sample description3", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project3 = new Project(client, "Sample title3", "Sample description3", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     List<Project> expectedProjects = Arrays.asList(project1, project2, project3);
     Mockito.when(projectRepository.findAll()).thenReturn(expectedProjects);

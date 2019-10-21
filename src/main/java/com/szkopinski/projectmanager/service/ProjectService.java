@@ -43,7 +43,7 @@ public class ProjectService {
           projectData.setClient(updatedProject.getClient());
           projectData.setTitle(updatedProject.getTitle());
           projectData.setDescription(updatedProject.getDescription());
-          projectData.setCostEstimates(updatedProject.getCostEstimates());
+//          projectData.setCostEstimates(updatedProject.getCostEstimates());
           projectData.setStatus(updatedProject.getStatus());
           projectData.setStartDate(updatedProject.getStartDate());
           projectData.setEndDate(updatedProject.getEndDate());

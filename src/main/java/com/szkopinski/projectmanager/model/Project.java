@@ -1,6 +1,10 @@
 package com.szkopinski.projectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,16 +32,18 @@ public class Project {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "client_id")
+  @JsonBackReference
   private Client client;
 
   private String title;
 
   private String description;
 
-  @OneToMany(mappedBy = "project")
-  private Set<CostEstimate> costEstimates;
+  @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+  @JsonManagedReference
+  private Set<CostEstimate> costEstimates = new HashSet<>();
 
   @Enumerated(EnumType.STRING)
   private Status status;
@@ -47,12 +53,10 @@ public class Project {
   private LocalDate endDate;
 
 
-  public Project(Client client, String title, String description, Set<CostEstimate> costEstimates, Status status, LocalDate startDate,
-      LocalDate endDate) {
+  public Project(Client client, String title, String description, Status status, LocalDate startDate, LocalDate endDate) {
     this.client = client;
     this.title = title;
     this.description = description;
-    this.costEstimates = costEstimates;
     this.status = status;
     this.startDate = startDate;
     this.endDate = endDate;

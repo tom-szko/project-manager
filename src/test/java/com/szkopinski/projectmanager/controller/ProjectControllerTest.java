@@ -44,11 +44,11 @@ class ProjectControllerTest {
   void shouldReturnAllProjects() throws Exception {
     // given
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project1 = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project1 = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
-    Project project2 = new Project(client, "Sample title2", "Sample description2", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project2 = new Project(client, "Sample title2", "Sample description2", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
-    Project project3 = new Project(client, "Sample title3", "Sample description3", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project3 = new Project(client, "Sample title3", "Sample description3", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     List<Project> projects = Arrays.asList(project1, project2, project3);
     String projectsAsJson = convertToJson(projects);
@@ -73,7 +73,7 @@ class ProjectControllerTest {
     // given
     int projectId = 1;
     Client client = new Client(1, "Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Project project = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     String projectAsJson = convertToJson(project);
     Mockito.when(projectService.findProjectById(projectId)).thenReturn(Optional.of(project));
@@ -95,8 +95,8 @@ class ProjectControllerTest {
   @DisplayName("Should add project")
   void shouldAddProject() throws Exception {
     // given
-    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
-    Project project = new Project(client, "Sample title1", "Sample description1", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019, 5, 1),
+    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
+    Project project = new Project(client, "Sample title1", "Sample description1", Status.FINISHED, LocalDate.of(2019, 5, 1),
         LocalDate.of(2019, 6, 20));
     String projectAsJson = convertToJson(project);
     Mockito.when(projectService.addProject(project)).thenReturn(project);
@@ -137,7 +137,7 @@ class ProjectControllerTest {
   void shouldUpdateProject() throws Exception {
     // given
     int projectId = 1;
-    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543", Sets.newHashSet());
+    Client client = new Client("Alpha", "Alpha address", "1234567890123456789012334", "048213898", "alpha@mail.com", "1234543");
     Project updatedProject = new Project(projectId, client, "Updated title", "Updated description", Sets.newHashSet(), Status.FINISHED, LocalDate.of(2019
         , 5, 3), LocalDate.of(2019, 6, 22));
     String projectAsJson = convertToJson(updatedProject);

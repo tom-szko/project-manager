@@ -1,5 +1,9 @@
 package com.szkopinski.projectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,15 +29,16 @@ public class CostEstimate {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "project_id")
+  @JsonBackReference
   private Project project;
 
-  @OneToMany(mappedBy = "costEstimate")
-  private List<Item> itemList;
+  @OneToMany(mappedBy = "costEstimate", cascade = CascadeType.ALL)
+  @JsonManagedReference
+  private List<Item> itemList = new ArrayList<>();
 
-  public CostEstimate(Project project, List<Item> itemList) {
+  public CostEstimate(Project project) {
     this.project = project;
-    this.itemList = itemList;
   }
 }

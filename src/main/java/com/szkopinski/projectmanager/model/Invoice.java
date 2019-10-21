@@ -1,5 +1,6 @@
 package com.szkopinski.projectmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.persistence.CascadeType;
@@ -27,12 +28,14 @@ public class Invoice {
 
   private LocalDate issueDate;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "recipient_id")
+  @JsonBackReference
   private Client recipient;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "project_id")
+  @JsonBackReference
   private Project project;
 
   private String description;
