@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ClientControllerIT {
 
   private static final String URL_TEMPLATE = "/api/clients/";
@@ -67,7 +67,7 @@ public class ClientControllerIT {
   }
 
   @Test
-  @DisplayName("Should return enmpty list when there are no clients in repository")
+  @DisplayName("Should return empty list when there are no clients in repository")
   void shouldReturnEmptyListOfClients() throws Exception {
     // given
     List<Client> clients = Lists.emptyList();
