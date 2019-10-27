@@ -1,8 +1,10 @@
 package com.szkopinski.projectmanager.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,15 +27,15 @@ public class CostEstimate {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "project_id")
   private Project project;
 
-  @OneToMany(mappedBy = "costEstimate")
-  private List<Item> itemList;
+  @OneToMany(mappedBy = "costEstimate", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<CostEstimateItem> costEstimateItemList;
 
-  public CostEstimate(Project project, List<Item> itemList) {
+  public CostEstimate(Project project, List<CostEstimateItem> costEstimateItemList) {
     this.project = project;
-    this.itemList = itemList;
+    this.costEstimateItemList = costEstimateItemList;
   }
 }

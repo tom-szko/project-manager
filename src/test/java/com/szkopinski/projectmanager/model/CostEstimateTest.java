@@ -14,14 +14,14 @@ class CostEstimateTest {
     int id = 1;
     Project project = new Project();
     Client client = new Client();
-    List<Item> itemList = Lists.emptyList();
+    List<CostEstimateItem> costEstimateItemList = Lists.emptyList();
 
     //when
-    CostEstimate costEstimate = new CostEstimate(id, project, itemList);
+    CostEstimate costEstimate = new CostEstimate(id, project, costEstimateItemList);
 
     //then
     assertEquals(id, costEstimate.getId());
     assertEquals(project, costEstimate.getProject());
-    assertEquals(itemList, costEstimate.getItemList());
+    assertEquals(costEstimateItemList, costEstimate.getCostEstimateItemList());
   }
 }
