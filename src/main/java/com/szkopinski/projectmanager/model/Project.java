@@ -1,11 +1,14 @@
 package com.szkopinski.projectmanager.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +31,7 @@ public class Project {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "client_id")
   private Client client;
 
@@ -36,7 +39,7 @@ public class Project {
 
   private String description;
 
-  @OneToMany(mappedBy = "project")
+  @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<CostEstimate> costEstimates;
 
   @Enumerated(EnumType.STRING)
@@ -45,7 +48,6 @@ public class Project {
   private LocalDate startDate;
 
   private LocalDate endDate;
-
 
   public Project(Client client, String title, String description, Set<CostEstimate> costEstimates, Status status, LocalDate startDate,
       LocalDate endDate) {

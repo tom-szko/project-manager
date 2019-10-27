@@ -1,6 +1,8 @@
 package com.szkopinski.projectmanager.model;
 
+import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +36,7 @@ public class Client {
 
   private String taxId;
 
-  @OneToMany(mappedBy = "client")
+  @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
   private Set<Project> projects;
 
   public Client(String name, String address, String accountNumber, String telephone, String email, String taxId, Set<Project> projects) {

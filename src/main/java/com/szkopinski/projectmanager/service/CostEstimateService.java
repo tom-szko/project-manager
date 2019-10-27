@@ -40,7 +40,7 @@ public class CostEstimateService {
     return costEstimateRepository.findById(id)
         .map(costEstimateData -> {
           costEstimateData.setProject(costEstimate.getProject());
-          costEstimateData.setItemList(costEstimate.getItemList());
+          costEstimateData.setCostEstimateItemList(costEstimate.getCostEstimateItemList());
           return costEstimateRepository.save(costEstimateData);
         }).orElse(null);
   }

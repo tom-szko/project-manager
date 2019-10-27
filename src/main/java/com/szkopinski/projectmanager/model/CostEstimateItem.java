@@ -3,6 +3,7 @@ package com.szkopinski.projectmanager.model;
 import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "items")
-public class Item {
+public class CostEstimateItem {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +37,11 @@ public class Item {
 
   private BigDecimal tax;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "cost_estimate_id")
   private CostEstimate costEstimate;
 
-  public Item(String name, int quantity, String unitType, BigDecimal unitPrice, BigDecimal discount, BigDecimal tax) {
+  public CostEstimateItem(String name, int quantity, String unitType, BigDecimal unitPrice, BigDecimal discount, BigDecimal tax) {
     this.name = name;
     this.quantity = quantity;
     this.unitType = unitType;
